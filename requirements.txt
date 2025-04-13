@@ -1,0 +1,11 @@
+groq
+agno
+flair
+presidio-analyzer
+presidio-anonymizer
+pymongo
+PyPDF2
+python-dotenv
+torch
+torchvision
+torchaudio
