@@ -1,23 +1,40 @@
-# 🛡️ AGNO-PII-FINAL: Agentic AI System for PII Masking & Unmasking (Agno + MongoDB)
+# 🛡️ AGNO PII Masking & Unmasking System
 
-This project implements a modular, agent-based system for detecting, masking, and unmasking Personally Identifiable Information (PII) using the **Groq Agno framework**, **Presidio**, **Flair**, **Regex**, and **MongoDB**.
-
-Built as part of an Agentic AI initiative, this solution uses CLI-driven input and leverages Groq's `agno.agent.Agent` class structure to modularize agents for future expansion or pipeline integration.
-
----
-
-## 🧠 Agents Included
-
-| Agent                    | Role                                                 |
-|--------------------------|------------------------------------------------------|
-| `PIIMaskingAgent`        | Detects PII (using Presidio, Flair, Regex) and replaces it with generated tokens. Stores original values in MongoDB. |
-| `PIIUnmaskingAgent`      | Restores original values from MongoDB using masked token and collection ID. |
-| `T&C Extraction Agent`   | Uses Groq LLaMA model to extract Terms & Conditions section from any PDF. |
-| `Document Embedding Agent` | Embeds extracted T&C sections using `SentenceTransformer` and stores them in MongoDB for RAG-style retrieval. |
+This project is a CLI-based Agentic AI system that performs **PII masking and unmasking** using:
+- 🧠 `Presidio` (NER + Pattern-based detection)
+- ✨ `Flair` (Deep learning-based NER)
+- 📚 `Regex` (Custom patterns)
+- 🗃️ `MongoDB` (for original PII mapping storage)
+- 🧩 Built on the **Groq Agno framework** to support modular, reusable AI agents.
 
 ---
 
-## 🏗️ Architecture (Agno)
+## 🚀 Features
 
-This project follows the [Agno agent framework by Groq](https://github.com/groq/agno):
+- Mask sensitive PII from any `.txt` or `.pdf` file
+- Unmask content using a unique `collection_id`
+- Follows the `agno.agent.Agent` structure for future integration into LLM pipelines or workflows
+- Stores and retrieves original values securely using MongoDB
 
+---
+
+## 🧠 Agents Implemented
+
+| Agent             | Description |
+|------------------|-------------|
+| `PIIMaskingAgent` | Detects and replaces PII with unique tags. Stores original values in MongoDB. |
+| `PIIUnmaskingAgent` | Replaces masked tokens with original PII using the collection ID. |
+
+Each agent defines:
+- `name`
+- `role`
+- `instructions`
+- `run()` method
+
+---
+
+## 🛠️ Setup
+
+Install dependencies:
+```bash
+pip install -r requirements.txt
